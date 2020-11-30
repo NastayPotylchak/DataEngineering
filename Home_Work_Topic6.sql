@@ -26,10 +26,16 @@ limit 1;
 /*2.Подсчитать общее количество лайков, которые получили 10 самых молодых пользователей*/
 select 
   ifnull(count(lp.post_id), 0) + ifnull(count(ph.photo_id), 0) as count_all_like
-from users u
+from 
+(
+	select 
+	  u.id
+	from users u
+	order by u.birthday 
+	limit 10
+) U	
 left join like_post lp on lp.user_id = u.id
-left join like_photos ph on ph.user_id = u.id
-where timestampdiff(year, u.birthday, now()) = (select min(timestampdiff(year, birthday, now())) from users);
+left join like_photos ph on ph.user_id = u.id;
 
 /*3.Определить кто больше поставил лайков (всего) - мужчины или женщины?*/
 select 
