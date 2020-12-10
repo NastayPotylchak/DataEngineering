@@ -8,9 +8,10 @@ use shop;
 
 START TRANSACTION;
 
-insert into sample.users (Id)
+insert into sample.users (Id, User_Name)
 select
-  Id 
+  U.Id,
+  U.name 
  from users U
  where U.id = 1
   and not exists (select * from sample.users where Id = 1);
