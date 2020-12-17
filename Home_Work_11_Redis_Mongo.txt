@@ -1,0 +1,18 @@
+В базе данных Redis подберите коллекцию для подсчета посещений с определенных IP-адресов.
+
+ZADD ip-addr 1249717090 rus:1
+ZADD ip-addr 1249717091 brus:1
+ZADD ip-addr 1249717062 rus:2
+ZADD ip-addr 1249717065 ger:1
+
+ZCOUNT ip-addr 1249717090 1249717092
+
+Организуйте хранение категорий и товарных позиций учебной базы данных shop в СУБД MongoDB.
+
+db.createCollection("category")
+db.category.insertMany({"_id": 1,"CategoryName": "Процессоры"},{"_id": 2,"CategoryName": "Материнские платы"})
+
+db.createCollection("products")
+db.products.insertOne({"name": "Intel Core i3-8100", "description": "Процессор для настольных персональных компьютеров", price: 500, category_id: 1})
+db.products.insertOne({"name": "AMD FX-8320E", "description": "Процессор для настольных персональных компьютеров", price: 2560, category_id: 1})
+db.products.insertOne({"name": "MSI B250M GAMING PRO", "description": "Материнская плата MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX", price: 4900, category_id: 2})
